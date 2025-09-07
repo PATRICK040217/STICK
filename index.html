@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VENCIMIENTOS KFC</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Pantalla de Login -->
+  <div id="loginScreen" class="login-container">
+    <h2>Login KFC</h2>
+    <input type="text" id="username" placeholder="Usuario" />
+
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Contraseña" />
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button onclick="login()">Ingresar</button>
+    <p id="loginError" class="error"></p>
+  </div>
+
+  <!-- Pantalla Principal -->
+  <div id="appScreen" class="container" style="display:none;">
+    <div class="header-bar">
+      <h1>VENCIMIENTOS KFC</h1>
+      <button id="logoutBtn" onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+    </div>
+
+    <input type="text" id="searchInput" placeholder="Buscar ítem..." onkeyup="filterItems()" />
+    <select id="itemList" size="10"></select>
+
+    <label for="dateInput" class="date-label">
+      Fecha y hora inicial:
+      <span id="dayColor" class="day-color-indicator"></span>
+    </label>
+    <input type="datetime-local" id="dateInput" onchange="updateDayColor()" />
+
+    <button onclick="calculateExpiry()">Calcular vencimiento</button>
+    <div id="result" class="result"></div>
+
+    <!-- Sticker (diseño original) -->
+    <div id="sticker" class="sticker" style="display: none;">
+      <div id="stickerHeader" class="sticker-header">DÍA</div>
+      <div class="sticker-grid">
+        <div class="sticker-column" id="pColumn"></div>
+        <div class="sticker-column" id="lColumn"></div>
+        <div class="sticker-column" id="vColumn"></div>
+      </div>
+      <div class="sticker-footer">
+        <div>Producto: <span id="stickerProducto"></span></div>
+        <div>Responsable:</div>
+      </div>
+    </div>
+
+    <!-- Panel de administración (solo ADM) -->
+    <div id="adminPanel" style="display:none; margin-top:20px;">
+      <h2>Panel de Administración</h2>
+      <button onclick="addItem()">Agregar Ítem</button>
+      <button onclick="saveChanges()">Guardar Cambios</button>
+      <button onclick="resetItems()">Restablecer</button>
+      <table id="adminTable" class="admin-table"></table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+
